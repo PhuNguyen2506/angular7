@@ -1,0 +1,106 @@
+<h1 [class.red] ="{
+	'red': h1style
+}">Tạo một số thao tác với Angular TS để add css</h1>
+
+<h1 [ngClass] ="{
+	'red': h1style,
+	'pink': !h1style
+}">Tạo một số thao tác với Angular TS để add css</h1>
+
+<h1 [style.color] ="h1style ? 'red' : 'blue'">Tạo một số thao tác với Angular TS để add css</h1>
+
+<h1 [ngStyle] ="{
+	'color': h1style ? 'red' : 'blue',
+	'font-family' : h1style ? 'inherit' : 'Helvetica'
+}">Tạo một số thao tác với Angular TS để add css</h1>
+
+
+<button (click)="firstclick()">
+	Click me
+</button>
+
+<h1>Visual Scrolling</h1>
+
+<div class="row">
+	<cdk-virtual-scroll-viewport itemSize="50" class="col-lg-12" [style.height]="'500px'">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>url</th>
+					<th>thumbnailUrl</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *cdkVirtualFor="let data of photoData" class="animated bounceInLeft">
+					<td>{{data.title}}</td>
+					<td>{{data.url}}</td>
+					<td>{{data.thumbnailUrl}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</cdk-virtual-scroll-viewport>
+</div>
+
+
+<h1>Drag and only Drag</h1>
+<div 
+	class="example-box" 
+	cdkDrag>Drag me around</div>
+
+<h1>Drag and only to the up down</h1>
+<div 
+	class="example-box" 
+	cdkDragLockAxis="y" 
+	cdkDrag>Drag me up or down</div>
+
+
+
+<h1>Drag and Drog Only in one column</h1>
+<div 
+	cdkDropList 
+	class="example-list" 
+	[cdkDropListData]="userData"
+	(cdkDropListDropped) = "drop($event)">
+	<div 
+		[ngStyle]="{'height':'50px'}"
+		 class="example-box" 
+		 *ngFor="let data of userData" 
+		 cdkDrag>{{data.name}}</div>
+</div>
+
+<h1>Drag and drop with 2 column</h1>
+<div class="row">
+	<div
+		cdkDropList
+		id="column1"
+		[cdkDropListData]="firstArray"
+		cdkDropListConnectedTo = "column2"
+		class="col-lg-6 example-list"
+		(cdkDropListDropped)="dropTwoCol($event)">
+		<div
+			class="example-box"
+			*ngFor="let data of firstArray"
+			[cdkDragData]="data"
+			cdkDrag>
+			{{data.name}}
+		</div>
+	</div>
+	<div
+		cdkDropList
+		id="column2"
+		[cdkDropListData]="secondArray"
+		cdkDropListConnectedTo = "column1"
+		class="col-lg-6 example-list"
+		(cdkDropListDropped)="dropTwoCol($event)">
+		<div
+			class="example-box"
+			*ngFor="let data of secondArray"
+			[cdkDragData]="data"
+			cdkDrag>
+			{{data.name}}
+		</div>
+	</div>
+</div>
+
+
